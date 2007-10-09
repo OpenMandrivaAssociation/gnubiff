@@ -1,4 +1,4 @@
-%define version 2.2.7
+%define version 2.2.8
 %define release %mkrel 1
 %define title GNUbiff
 
@@ -24,7 +24,7 @@ BuildRequires: desktop-file-utils
 Requires(post):	info-install
 Requires(preun): info-install
 
-Requires(post): desktop-file-utils 
+Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 
 %description
@@ -68,7 +68,7 @@ cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=%{title}
 Comment=%{summary}
-Exec=%{_bindir}/%{name} 
+Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
