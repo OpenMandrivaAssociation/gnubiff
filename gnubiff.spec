@@ -9,7 +9,6 @@ Release:	%{release}
 License:	GPL
 Group:		Networking/Mail
 URL:		http://gnubiff.sf.net/
-Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 Source:		http://prdownloads.sourceforge.net/gnubiff/%{name}-%{version}.tar.bz2
 
