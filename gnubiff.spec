@@ -1,4 +1,4 @@
-%define version 2.2.8
+%define version 2.2.9
 %define release %mkrel 1
 %define title GNUbiff
 
