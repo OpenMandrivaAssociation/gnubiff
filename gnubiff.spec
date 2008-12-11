@@ -17,7 +17,7 @@ BuildRequires:	gnome-panel-devel
 BuildRequires:	gtk2-devel >= 2.4.0
 BuildRequires:	libglade2.0-devel >= 2.3.0
 BuildRequires:	openssl-devel
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRequires:	perl-XML-Parser
 BuildRequires:  gamin-devel
 BuildRequires: desktop-file-utils
