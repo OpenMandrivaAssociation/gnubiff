@@ -1,26 +1,29 @@
-%define version 2.2.10
-%define release %mkrel 2
+%define version 2.2.11
+%define release %mkrel 1
 %define title GNUbiff
 
 Summary:	Mail notification program
 Name:		gnubiff
 Version:	%{version}
 Release:	%{release}
-License:	GPL
+License:	GPLv3+
 Group:		Networking/Mail
 URL:		http://gnubiff.sf.net/
 Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
-Source:		http://prdownloads.sourceforge.net/gnubiff/%{name}-%{version}.tar.bz2
-
+Source:		http://prdownloads.sourceforge.net/gnubiff/%{name}-%{version}.tar.gz
+Patch0:		gnubiff-2.2.10-extradeps.patch
+Patch1:		gnubiff-2.2.11-strfmt.patch
 BuildRequires:	gnome-panel-devel
+BuildRequires:	libgnomeui2-devel
 BuildRequires:	gtk2-devel >= 2.4.0
 BuildRequires:	libglade2.0-devel >= 2.3.0
 BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
 BuildRequires:	perl-XML-Parser
 BuildRequires:  gamin-devel
-BuildRequires: desktop-file-utils
+BuildRequires:	desktop-file-utils
+Requires:	sox
 Requires(post):	info-install
 Requires(preun): info-install
 
@@ -54,9 +57,11 @@ This package contains the GNOME applet of %{name}.
 
 %prep
 %setup -q
+%patch0 -p1 -b .deps
+%patch1 -p1 -b .strfmt
 
 %build
-%configure2_5x
+%configure2_5x --disable-rpath
 %make
 
 %install
