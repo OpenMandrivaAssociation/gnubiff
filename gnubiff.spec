@@ -21,13 +21,10 @@ BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
 BuildRequires:	perl-XML-Parser
 BuildRequires:  gamin-devel
-BuildRequires:	desktop-file-utils
+BuildRequires:	intltool
 Requires:	sox
 Requires(post):	info-install
 Requires(preun): info-install
-
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
 
 %description
 %{name} is a mail notification program that periodically checks for mail
@@ -74,15 +71,8 @@ convert -geometry 16x16 art/gnubiff.png %{buildroot}%{_miconsdir}/%{name}.png
 
 %find_lang %{name}
 
-%post
-%{update_desktop_database}
-%_install_info %{name}.info
-
 %preun
 %_remove_install_info %{name}.info
-
-%postun
-%{clean_desktop_database}
 
 %clean
 rm -rf %{buildroot}
@@ -105,5 +95,3 @@ rm -rf %{buildroot}
 %doc COPYING
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_libdir}/bonobo/servers/*.server
-
-
