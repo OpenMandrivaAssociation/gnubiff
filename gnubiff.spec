@@ -1,4 +1,4 @@
-%define version 2.2.11
+%define version 2.2.13
 %define release %mkrel 1
 %define title GNUbiff
 
@@ -12,8 +12,7 @@ URL:		http://gnubiff.sf.net/
 Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 Source:		http://prdownloads.sourceforge.net/gnubiff/%{name}-%{version}.tar.gz
-Patch0:		gnubiff-2.2.10-extradeps.patch
-Patch1:		gnubiff-2.2.11-strfmt.patch
+Patch1:		gnubiff-2.2.13-strfmt.patch
 BuildRequires:	gnome-panel-devel
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	gtk2-devel >= 2.4.0
@@ -57,8 +56,7 @@ This package contains the GNOME applet of %{name}.
 
 %prep
 %setup -q
-%patch0 -p1 -b .deps
-%patch1 -p1 -b .strfmt
+%patch1 -p1
 
 %build
 %configure2_5x --disable-rpath
@@ -67,22 +65,6 @@ This package contains the GNOME applet of %{name}.
 %install
 rm -rf %{buildroot}
 %makeinstall_std
-
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Name=%{title}
-Comment=%{summary}
-Exec=%{_bindir}/%{name}
-Icon=%{name}
-Terminal=false
-Type=Application
-StartupNotify=true
-Categories=GNOME;GTK;Network;Email;X-MandrivaLinux-Internet-Mail;
-EOF
-
-desktop-file-install --vendor="" \
-  --dir $RPM_BUILD_ROOT%{_datadir}/applications $RPM_BUILD_ROOT%{_datadir}/applications/*
 
 # icons
 mkdir -p %{buildroot}%{_iconsdir} %{buildroot}%{_miconsdir}
@@ -113,7 +95,7 @@ rm -rf %{buildroot}
 %{_datadir}/pixmaps/*
 %{_mandir}/man1/*
 %{_infodir}/*
-%{_datadir}/applications/mandriva-%{name}.desktop
+%{_datadir}/applications/%{name}.desktop
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
