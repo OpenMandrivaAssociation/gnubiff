@@ -1,5 +1,5 @@
 %define version 2.2.13
-%define release %mkrel 2
+%define release %mkrel 3
 %define title GNUbiff
 
 Summary:	Mail notification program
