@@ -1,16 +1,12 @@
-%define version 2.2.13
-%define release %mkrel 3
 %define title GNUbiff
 
 Summary:	Mail notification program
 Name:		gnubiff
-Version:	%{version}
-Release:	%{release}
+Version:	2.2.13
+Release:	4
 License:	GPLv3+
 Group:		Networking/Mail
 URL:		http://gnubiff.sf.net/
-Buildroot:	%{_tmppath}/%{name}-%{version}-buildroot
-
 Source:		http://prdownloads.sourceforge.net/gnubiff/%{name}-%{version}.tar.gz
 Patch1:		gnubiff-2.2.13-strfmt.patch
 BuildRequires:	gnome-panel-devel
@@ -20,11 +16,9 @@ BuildRequires:	libglade2.0-devel >= 2.3.0
 BuildRequires:	openssl-devel
 BuildRequires:	imagemagick
 BuildRequires:	perl-XML-Parser
-BuildRequires:  gamin-devel
+BuildRequires:	gamin-devel
 BuildRequires:	intltool
 Requires:	sox
-Requires(post):	info-install
-Requires(preun): info-install
 
 %description
 %{name} is a mail notification program that periodically checks for mail
@@ -71,14 +65,7 @@ convert -geometry 16x16 art/gnubiff.png %{buildroot}%{_miconsdir}/%{name}.png
 
 %find_lang %{name}
 
-%preun
-%_remove_install_info %{name}.info
-
-%clean
-rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr(-, root, root)
 %doc AUTHORS ChangeLog NEWS README THANKS
 %{_bindir}/*
 %{_datadir}/%{name}
@@ -91,7 +78,6 @@ rm -rf %{buildroot}
 %{_miconsdir}/%{name}.png
 
 %files applet
-%defattr(-, root, root)
 %doc COPYING
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_libdir}/bonobo/servers/*.server
