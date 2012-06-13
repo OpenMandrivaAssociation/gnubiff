@@ -79,4 +79,5 @@ convert -geometry 16x16 art/gnubiff.png %{buildroot}%{_miconsdir}/%{name}.png
 %files applet
 %doc COPYING
 %{_datadir}/gnome-2.0/ui/*.xml
-%{_libdir}/bonobo/servers/*.server
+%{_datadir}/dbus-1/services/*.service
+%{_datadir}/gnome-panel/4.0/applets/*.panel-applet
