@@ -8,6 +8,7 @@ License:	GPLv3+
 Group:		Networking/Mail
 URL:		http://gnubiff.sf.net/
 Source:		http://prdownloads.sourceforge.net/gnubiff/%{name}-%{version}.tar.gz
+Patch0:		gnubiff-2.2.15-linkage.patch
 BuildRequires:	pkgconfig(gamin)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libpanelapplet-4.0)
@@ -45,6 +46,7 @@ This package contains the GNOME applet of %{name}.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure2_5x --disable-rpath
