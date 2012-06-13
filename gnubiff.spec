@@ -12,6 +12,7 @@ BuildRequires:	pkgconfig(gamin)
 BuildRequires:	pkgconfig(gtk+-3.0)
 BuildRequires:	pkgconfig(libpanelapplet-4.0)
 BuildRequires:	imagemagick
+BuildRequires:	intltool
 BuildRequires:	openssl-devel
 BuildRequires:	perl-XML-Parser
 BuildRequires:	popt-devel
