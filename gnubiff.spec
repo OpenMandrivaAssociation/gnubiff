@@ -10,6 +10,7 @@ URL:		http://gnubiff.sf.net/
 Source:		http://prdownloads.sourceforge.net/gnubiff/%{name}-%{version}.tar.gz
 Patch1:		gnubiff-2.2.13-strfmt.patch
 BuildRequires:	gnome-panel-devel
+BuildRequires:	pkgconfig(libpanelapplet-2.0)
 BuildRequires:	libgnomeui2-devel
 BuildRequires:	gtk2-devel >= 2.4.0
 BuildRequires:	libglade2.0-devel >= 2.3.0
