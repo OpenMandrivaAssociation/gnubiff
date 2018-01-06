@@ -21,6 +21,7 @@ BuildRequires:	intltool
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	perl(XML::Parser)
 BuildRequires:	popt-devel
+BuildRequires:	GConf2
 
 Requires:	sox
 
