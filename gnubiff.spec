@@ -1,22 +1,27 @@
 %define title GNUbiff
 
+
 Summary:	Mail notification program
 Name:		gnubiff
-Version:	2.2.15
-Release:	2
+Version:	2.2.17
+Release:	1
 License:	GPLv3+
 Group:		Networking/Mail
 URL:		http://gnubiff.sf.net/
-Source:		http://prdownloads.sourceforge.net/gnubiff/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		gnubiff-2.2.15-linkage.patch
+
+BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig(gamin)
 BuildRequires:	pkgconfig(gtk+-3.0)
-BuildRequires:	pkgconfig(libpanelapplet-4.0)
+BuildRequires:	pkgconfig(libpanel-applet)
+#BuildRequires:	pkgconfig(libmatepanelapplet-4.0)
 BuildRequires:	imagemagick
 BuildRequires:	intltool
-BuildRequires:	openssl-devel
-BuildRequires:	perl-XML-Parser
+BuildRequires:	pkgconfig(openssl)
+BuildRequires:	perl(XML::Parser)
 BuildRequires:	popt-devel
+
 Requires:	sox
 
 %description
@@ -27,6 +32,19 @@ without GNOME support. Supported protocols are pop3, apop, imap4, mh,
 qmail, mailfile and SSL. Furthermore, gnubiff is fully configurable with
 a lot of options like polltime, poptime, sounds, mail reader, mailbox
 title, etc.
+
+%files -f %{name}.lang
+%doc AUTHORS ChangeLog NEWS README THANKS
+%{_bindir}/*
+%{_datadir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/pixmaps/%{name}.png
+%{_datadir}/pixmaps/%{name}.xpm
+%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_mandir}/man1/%{name}.1*
+%{_infodir}/*
+
+#---------------------------------------------------------------------------
 
 %package	applet
 Summary:	GNOME applet of gnubiff, a mail notification program
@@ -44,44 +62,38 @@ title, etc.
 
 This package contains the GNOME applet of %{name}.
 
-%prep
-%setup -q
-%patch0 -p1
-
-%build
-%configure2_5x --disable-rpath
-%make
-
-%install
-rm -rf %{buildroot}
-%makeinstall_std
-
-# icons
-mkdir -p %{buildroot}%{_iconsdir} %{buildroot}%{_miconsdir}
-install -m 644 -D       art/gnubiff.png %{buildroot}%{_liconsdir}/%{name}.png
-convert -geometry 32x32 art/gnubiff.png %{buildroot}%{_iconsdir}/%{name}.png
-convert -geometry 16x16 art/gnubiff.png %{buildroot}%{_miconsdir}/%{name}.png
-
-%find_lang %{name}
-
-%files -f %{name}.lang
-%doc AUTHORS ChangeLog NEWS README THANKS
-%{_bindir}/*
-%{_datadir}/%{name}
-%{_datadir}/pixmaps/*
-%{_mandir}/man1/*
-%{_infodir}/*
-%{_datadir}/applications/%{name}.desktop
-%{_liconsdir}/%{name}.png
-%{_iconsdir}/%{name}.png
-%{_miconsdir}/%{name}.png
-
 %files applet
 %doc COPYING
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_datadir}/dbus-1/services/*.service
-%{_datadir}/gnome-panel/4.0/applets/*.panel-applet
+%{_datadir}/gnome-panel/5.0/applets/*.panel-applet
 
+#---------------------------------------------------------------------------
+
+%prep
+%setup -q
+%apply_patches
+
+%build
+%configure
+%make
+
+%install
+%makeinstall_std
+
+# icons
+install -dm 755 %{buildroot}%{_iconsdir}/hicolor/
+for dim in 16 32 48 64 72 128
+do
+  install -dm 0755 %{buildroot}%{_iconsdir}/hicolor/${dim}x${dim}/apps/
+  convert -scale ${dim}x${dim} art/%{name}.png %{buildroot}%{_iconsdir}/hicolor/${dim}x${dim}/apps/%{name}.png
+done
+# pixmap
+install -dm 0755 %{buildroot}%{_datadir}/pixmaps/
+convert -background none art/%{name}.png %{buildroot}%{_datadir}/pixmaps/%{name}.xpm
+
+# locales
+%find_lang %{name}
 
 %changelog
 * Wed Jun 13 2012 Andrey Bondrov <abondrov@mandriva.org> 2.2.15-1
