@@ -1,0 +1,20 @@
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -8,7 +8,7 @@
+ 	-DGNUBIFF_UIDIR=\""$(datadir)/gnome-2.0/ui"\"	\
+ 	-DREAL_DATADIR=\""$(datadir)"\"					\
+ 	-D_GNU_SOURCE									\
+-	-Wall -ansi -pedantic -export-dynamic
++	-Wall -ansi -pedantic -Wl,--export-dynamic
+ 
+ bin_PROGRAMS = gnubiff
+ 
+@@ -71,7 +71,7 @@
+ gnubiff$(EXEEXT): $(gnubiff_OBJECTS) $(gnubiff_DEPENDENCIES) 
+ 	@rm -f gnubiff$(EXEEXT)
+ 	@printf "%-40s" "Linking $@ ... "
+-	$(CXXLINK) $(gnubiff_LDFLAGS) $(gnubiff_OBJECTS) $(gnubiff_LDADD) $(LIBS)
++	$(CXXLINK) $(gnubiff_LDFLAGS) $(gnubiff_OBJECTS) $(gnubiff_LDADD) $(LIBS)  -lgthread-2.0 -Wl,--export-dynamic
+ 	@echo "[OK]"
+ 
+ ## End of section to be commented in case of compilation problem

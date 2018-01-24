@@ -1,6 +1,5 @@
 %define title GNUbiff
 
-
 Summary:	Mail notification program
 Name:		gnubiff
 Version:	2.2.17
@@ -9,7 +8,7 @@ License:	GPLv3+
 Group:		Networking/Mail
 URL:		http://gnubiff.sf.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-Patch0:		gnubiff-2.2.15-linkage.patch
+Patch0:		%{name}-2.2.17-linkage.patch
 
 BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig(gamin)
