@@ -6,7 +6,7 @@ Version:	2.2.17
 Release:	1
 License:	GPLv3+
 Group:		Networking/Mail
-URL:		http://gnubiff.sf.net/
+URL:		https://gnubiff.sf.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-2.2.17-linkage.patch
 
