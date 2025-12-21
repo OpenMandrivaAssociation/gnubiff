@@ -10,6 +10,11 @@ URL:		https://gnubiff.sf.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		%{name}-2.2.17-linkage.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	desktop-file-utils
 BuildRequires:	pkgconfig(gamin)
 BuildRequires:	pkgconfig(gtk+-3.0)
